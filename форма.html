@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контактные данные</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://avatars.mds.yandex.net/i?id=f989f3adbe4eafc658d6b61479acb9f91236b813-5910728-images-thumbs&n=13');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 450px;
+            margin: 50px auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="index.html">Главный сайт</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Отправьте свои контактные данные</h2>
+    <form id="contactForm">
+        <input type="text" id="lastName" placeholder="Фамилия" required>
+        <input type="text" id="firstName" placeholder="Имя" required>
+        <input type="text" id="group" placeholder="Группа" required>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <input type="tel" id="phone" placeholder="Мобильный телефон" required>
+        <input type="email" id="email" placeholder="Электронная почта" required>
+        <input type="date" id="date" placeholder="Дата отправки" required>
+        <button type="submit">Отправить</button>
+    </form>
+    <div id="responseMessage"></div>
+</div>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const lastName = document.getElementById('lastName').value;
+        const firstName = document.getElementById('firstName').value;
+        const group = document.getElementById('group').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const date = document.getElementById('date').value;
+
+        const data = {
+            lastName: lastName,
+            firstName: firstName,
+            group: group,
+            phone: phone,
+            email: email,
+            date: date
+        };
+
+        fetch('https://www.bing.com/search?', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('responseMessage').innerText = 'Данные успешно отправлены!';
+        })
+        .catch((error) => {
+            console.error('Ошибка:', error);
+            document.getElementById('responseMessage').innerText = 'Произошла ошибка при отправке данных.';
+        });
+    });
+</script>
+
+</body>
+</html>

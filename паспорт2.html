@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM_JS. Считываем информацию из DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .passport-container {
+            position: relative;
+            display: inline-block;
+        }
+        .passport-image {
+            width: 600px;
+            height: auto; 
+        }
+        .text-overlay {
+            position: absolute;
+            color: black; 
+            font-size: 20px; 
+            text-shadow: 1px 1px 3px rgba(18, 3, 3, 0.8); 
+        }
+        #surname {
+            top: 450px; 
+            left: 300px; 
+        }
+        #name {
+            top: 500px; 
+            left: 300px;
+        }
+        #dob {
+            top: 575px; 
+            left: 400px; 
+        }
+        #passportNumber {
+            top: 650px; 
+            left: 300px; 
+        }
+        input {
+            margin: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">На главную</a>
+    <h1>DOM_JS. Считываем информацию из DOM</h1>
+
+<div>
+    <input type="text" id="surnameInput" placeholder="Фамилия" value="Середа" />
+    <input type="text" id="nameInput" placeholder="Имя" value="Андрей" />
+    <input type="date" id="dobInput" placeholder="Год рождения" value="2005" />
+    <input type="number" id="passportNumberInput" placeholder="Номер паспорта" value="1111 111111" />
+</div>
+
+<div class="passport-container">
+    <img src="./картинки/1670171873_grizly-club-p-shablon-pasporta-rf-1.jpg" alt="Паспорт" class="passport-image"> 
+    <div class="text-overlay" id="surname">Середа</div>
+    <div class="text-overlay" id="name">Андрей</div>
+    <div class="text-overlay" id="dob">2005</div>
+    <div class="text-overlay" id="passportNumber">1111 111111</div>
+</div>
+
+<button id="changeButton">Изменить данные</button>
+<button id="getDataButton">Получить данные</button>
+
+<script>
+    function changeData() {
+        const surname = document.getElementById('surnameInput').value;
+        const name = document.getElementById('nameInput').value;
+        const dob = document.getElementById('dobInput').value;
+        const passportNumber = document.getElementById('passportNumberInput').value;
+
+        document.getElementById('surname').innerText = surname;
+        document.getElementById('name').innerText = name; 
+        document.getElementById('dob').innerText = dob; 
+        document.getElementById('passportNumber').innerText = passportNumber; 
+    }
+
+    function getDataFromDOM() {
+        const surname = document.getElementById('surname').innerText; 
+        const name = document.getElementById('name').innerText; 
+        const dob = document.getElementById('dob').innerText;
+
+        console.log('Фамилия:', surname);
+        console.log('Имя:', name);
+        console.log('Год рождения:', dob);
+
+        alert('Фамилия из DOM: ' + surname + '\nИмя из DOM: ' + name + '\nГод рождения из DOM: ' + dob);
+    }
+
+    document.getElementById('changeButton').addEventListener('click', changeData);
+    document.getElementById('getDataButton').addEventListener('click', getDataFromDOM);
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма отправки данных</title>
+    <link rel="stylesheet" href="styles2.css">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="информационнаястраница1.html">cтраница 1</a></li>
+                <li><a href="информационнаястраница3.html">страница 2</a></li>
+                <li><a href="информацияобархиве4.html">Таблица</a></li>
+                <li><a href="form2.html"class="active">Форма</a></li>
+                <li><a href="повторинформация.html">блоки</a></li>
+            </ul>
+        </nav>
+    </header>
+    <style>
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://avatars.mds.yandex.net/i?id=f989f3adbe4eafc658d6b61479acb9f91236b813-5910728-images-thumbs&n=13');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 450px;
+            margin: 50px auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, button {
+            width: 30%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Форма отправки данных</h1>
+<form action="https://www.bing.com/search?" id="UserEnter" name="UserEnter" target="_blank">
+    <p>Пожалуйста, оставьте свои данные:<input type="hidden" name="q" value="search"></p>
+
+<p> <label for="name">Имя:</label>
+<input type="text" id="name" name="name" value="Андрей" required=""> </p>
+<p> <label for="surname">Фамилия:</label>
+<input type="text" id="surname" name="surname" value="Середа" required=""> </p>
+<p> <label for="phone">Мобильный телефон:</label>
+<input type="tel" id="phone" name="phone" value="
++7 800 555 35 35" required=""> </p>
+
+<p> <label for="email">Электронная почта:</label>
+<input type="email" id="email" name="email" value="example@hse.com" required=""> </p>
+<p> 
+    <label>Подписаться на нашу рассылку</label><input type="radio" id="option1" name="preference" value="option1" checked="">
+    <label for="option1">Да</label>
+    <input type="radio" id="option2" name="preference" value="option2">
+    <label for="option2">Нет</label></p>
+    <p> <input type="hidden" name="source" value="contact_form">
+        <input type="submit" value="Отправить"> </p>
+</form>
+</body>
+</html>

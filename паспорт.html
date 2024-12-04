@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> 
+    <title>Изменяем кириллицу на латиницу по клику</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .passport-container {
+            position: relative;
+            display: inline-block;
+        }
+        .passport-image {
+            width: 400px; 
+            height: auto; 
+        }
+        .text-overlay {
+            position: absolute;
+            color: black; 
+            font-size: 24px; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+        }
+        #name {
+            top: 300px; 
+            left: 150px; 
+        }
+        #dob {
+            top: 350px; 
+            left: 200px; 
+        }
+        input {
+            margin: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            margin-top: 20px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">На главную</a>
+    <h1>Изменяем кириллицу на латиницу по клику</h1>
+
+    <div>
+        <input type="text" id="surname" placeholder="Фамилия" />
+        <input type="text" id="nameInput" placeholder="Имя" />
+        <input type="date" id="dobInput" placeholder="Год рождения" />
+    </div>
+    
+    <div class="passport-container">
+        <img src="./картинки/1670171873_grizly-club-p-shablon-pasporta-rf-1.jpg" alt="Паспорт" class="passport-image"> 
+        <div class="text-overlay" id="name">Фамилия Имя</div>
+        <div class="text-overlay" id="dob">Год рождения: 2000</div>
+    </div>
+    
+    <button id="changeButton">Изменить данные</button>
+    <button id="translitButton">Кириллица → Латиница</button>
+    
+    <script>
+        function changeData() {
+            const surname = document.getElementById('surname').value;
+            const name = document.getElementById('nameInput').value;
+            const dob = document.getElementById('dobInput').value;
+    
+            document.getElementById('name').innerText = `${surname} ${name}`; 
+            document.getElementById('dob').innerText = `Год рождения: ${dob}`; 
+        }
+    
+        function translitData() {
+            const surname = document.getElementById('surname').value;
+            const name = document.getElementById('nameInput').value;
+            const dob = document.getElementById('dobInput').value;
+    
+            const translitSurname = transliterate(surname);
+            const translitName = transliterate(name);
+    
+            document.getElementById('name').innerText = `${translitSurname} ${translitName}`; 
+            document.getElementById('dob').innerText = `Год рождения: ${dob}`; 
+        }
+    
+        function transliterate(text) {
+            const cyrillic = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
+            const latin = 'abvgdeejzijklmnoprstufhzcss_y_eua';
+            return text.split('').map(char => {
+                const index = cyrillic.indexOf(char.toLowerCase());
+                return index !== -1 ? latin[index] : char;
+            }).join('');
+        }
+    
+        document.getElementById('changeButton').addEventListener('click', changeData);
+        document.getElementById('translitButton').addEventListener('click', translitData);
+    </script>
+</body>
+</html>

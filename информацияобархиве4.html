@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица с изображениями и навигацией</title>
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+        }
+        .navigation {
+            margin-bottom: 20px;
+        }
+        .navigation a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: rgb(199, 32, 241);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-image: url('./картинки/б.дмитровка15_4.jpg'); 
+            background-size: cover;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            color: rgb(225, 216, 216);
+            height: 300px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,7);
+        
+        }
+        .cell-image {
+            background-image: url('./картинки/RGASPI.png'); 
+            background-size: contain;
+            height: 10px; 
+            
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <div class="navigation">
+        <a href="index.html">На главную</a>
+    </div>
+
+    <h1 id="top">Таблица, содержащую информацию о РГАСПИ</h1>
+
+    <table>
+        <tr>
+            <th>Что делает архив</th>
+            <th>Фан-факты</th>
+        </tr>
+        <tr>
+            <td>
+                Цели архива
+                <ol>
+                    <li>Хранение документов и обеспечение сохранности документов</li>
+                    <li>Учет документов</li>
+                    <li>Пополнение документов</li>
+                </ol>
+            </td>
+            <td class="cell-image"></td>
+        </tr>
+        <tr>
+            <td>
+                <a href="http://rgaspi.org/" target="_blank">Официальный сайт РГАСПИ</a>
+            </td>
+            <td>
+                Исторические факты
+                <ul>
+                    <li>Российский государственный архив социально-политической истории был создан в 1999г.</li>
+                    <li>Появление архива обусловлено сличнием двух архивов РЦХИДНИ и ЦХДМО</li>
+                    <li>Предшественники архива ведут свою историю с 1920-х годов</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

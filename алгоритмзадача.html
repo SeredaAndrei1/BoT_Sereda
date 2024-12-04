@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Решение алгоритмической задачи</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        input, textarea {
+            margin: 10px;
+            padding: 5px;
+            font-size: 16px;
+            width: 300px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">На главную</a>
+    <h1>Решение алгоритмической задачи</h1>
+    <p>Опишите задачу и введите параметры емкостей:</p>
+
+    <div>
+        <textarea id="taskDescription" placeholder="Опишите задачу..." required></textarea>
+        <input type="number" id="a" placeholder="Ребро куба (A)" required />
+        <input type="number" id="h" placeholder="Высота цилиндра (H)" required />
+        <input type="number" id="r" placeholder="Радиус основания цилиндра (R)" required />
+        <input type="number" id="m" placeholder="Объем жидкости (M)" required />
+    </div>
+
+    <button id="calculateButton">Рассчитать</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        document.getElementById('calculateButton').addEventListener('click', function() {
+            const A = parseFloat(document.getElementById('a').value);
+            const H = parseFloat(document.getElementById('h').value);
+            const R = parseFloat(document.getElementById('r').value);
+            const M = parseFloat(document.getElementById('m').value);
+            const taskDescription = document.getElementById('taskDescription').value;
+
+            
+            const volumeCube = Math.pow(A, 3);
+            const volumeCylinder = Math.PI * Math.pow(R, 2) * H;
+
+            let resultMessage = "Результаты:\n";
+
+            if (M <= volumeCube) {
+                resultMessage += "Можно заполнить кубическую емкость.\n";
+            } else {
+                resultMessage += "Нельзя заполнить кубическую емкость.\n";
+            }
+
+            if (M <= volumeCylinder) {
+                resultMessage += "Можно заполнить цилиндрическую емкость.\n";
+            } else {
+                resultMessage += "Нельзя заполнить цилиндрическую емкость.\n";
+            }
+
+            if (M <= volumeCube && M <= volumeCylinder) {
+                resultMessage += "Можно заполнить обе емкости.";
+            } else if (M > volumeCube && M > volumeCylinder) {
+                resultMessage += "Нельзя заполнить ни одну из емкостей.";
+            }
+
+            document.getElementById('result').innerText = resultMessage;
+
+           
+            sendDataToServer(taskDescription, A, H, R, M, resultMessage);
+        });
+
+        function sendDataToServer(taskDescription, A, H, R, M, resultMessage) {
+            const data = {
+                taskDescription: taskDescription,
+                A: A,
+                H: H,
+                R: R,
+                M: M,
+                result: resultMessage
+            };
+
+            fetch('https://bing.com/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Успех:', data);
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+            });
+        }
+    </script>
+
+</body>
+</html>
